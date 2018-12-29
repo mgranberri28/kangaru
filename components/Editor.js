@@ -28,13 +28,14 @@ constructor(props) {
     const newCode = this.state.code
     console.log('handleClick');
     this.setState({
-    script: newCode});
+      code:'// type your code...',
+      script: newCode}
+    );
   }
     
   
   render() {
     console.log(this.state.script);
-    const props = this.props;
     const code = this.state.code;
     const options = {
       selectOnLineNumbers: true
@@ -45,6 +46,16 @@ constructor(props) {
           width="400"
           height="400"
           language="javascript"
+          colors={{
+            'editor.foreground': '#000000',
+            'editor.background': '#EDF9FA',
+            'editorCursor.foreground': '#8B0000',
+            'editor.lineHighlightBackground': '#0000FF20',
+            'editorLineNumber.foreground': '#008800',
+            'editor.selectionBackground': '#88000030',
+            'editor.inactiveSelectionBackground': '#88000015'
+        }
+    }
           theme="vs-dark"
           value={code}
           options={options}
