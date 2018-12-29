@@ -6,44 +6,30 @@ class Editor extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-      code: '// type your code...',
-      script: ''
+      
     }
-    this.handleClick = this.handleClick.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
   editorDidMount(editor, monaco) {
     console.log('editorDidMount', editor);
     editor.focus();
-  }
-  onChange(newValue) {
-    console.log('onChange', newValue);
-    this.setState({code: newValue
-    });
-
-
-  }
-
-  handleClick(){
-    const newCode = this.state.code
-    console.log('handleClick');
-    this.setState({
-      code:'// type your code...',
-      script: newCode}
-    );
-  }
-    
+  }    
   
   render() {
-    console.log(this.state.script);
-    const code = this.state.code;
+    const {
+      code,
+      onCodeChange,
+      handleTransformClick
+    } = this.props;
+    // console.log(this.state.script);
+    // const props = this.props;
+    // const code = this.state.code;
     const options = {
       selectOnLineNumbers: true
     };
     return (
-      <div>
+      <div className="editor">
         <MonacoEditor
-          width="400"
+          width="100%"
           height="400"
           language="javascript"
           colors={{
@@ -59,10 +45,10 @@ constructor(props) {
           theme="vs-dark"
           value={code}
           options={options}
-          onChange={this.onChange}
+          onChange={onCodeChange}
           editorDidMount={this.editorDidMount}
         />
-        <button onClick={this.handleClick}>Save</button>
+        <button className="btn waves-effect waves-light green darken-1" onClick={() => handleTransformClick()}>Save</button>
       </div>
     );
   }
